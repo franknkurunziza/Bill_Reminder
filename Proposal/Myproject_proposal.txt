@@ -1,0 +1,19 @@
+Need to have
+-Register & Login
+-Create Object
+-View Objects from DataBase
+-Edit Object
+-Delet Object
+-Send A Reminder to user Email 
+
+Nices to have 
+-Google Api calender
+-or Phone Api message
+
+My project is a Bill reminder where a user create a bill to be reminded and the 
+Application does the calculate Days and send you a notification on email at least every two days until 
+the Bill is Payed
+
+GitHub link
+
+https://github.com/franknkurunziza/Bill_Reminder
