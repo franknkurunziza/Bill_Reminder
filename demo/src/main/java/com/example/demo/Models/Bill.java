@@ -13,8 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="bills")
@@ -30,7 +34,13 @@ public class Bill {
     @NotNull
     private int amount;
     
+//    private LocalDate payDate=LocalDate.now();
+    @FutureOrPresent
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date payDate;
+    
+    @Transient
+    private String date ;
     
     private boolean payed=false;
     
@@ -75,9 +85,17 @@ public class Bill {
 	public void setPayDate(Date payDate) {
 		this.payDate = payDate;
 	}
+	
 	public boolean isPayed() {
 		return payed;
 	}
+	
+//	public LocalDate getPayDate() {
+//		return payDate;
+//	}
+//	public void setPayDate(LocalDate payDate) {
+//		this.payDate = payDate;
+//	}
 	public void setPayed(boolean payed) {
 		this.payed = payed;
 	}
@@ -98,6 +116,12 @@ public class Bill {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
     
     
