@@ -55,7 +55,7 @@ public class User {
         this.updatedAt = new Date();
     }
     
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
     private List<Bill> bills;
     
 	public Long getId() {

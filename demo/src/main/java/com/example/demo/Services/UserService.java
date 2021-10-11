@@ -1,11 +1,13 @@
 package com.example.demo.Services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Models.Bill;
 import com.example.demo.Models.User;
 import com.example.demo.Repository.UserRepo;
 
@@ -14,6 +16,9 @@ public class UserService {
 	
 	@Autowired
 	private UserRepo uRepo;
+	
+	@Autowired
+	private EmailService eServ;
 	
 	// Register and Hash Password
     public User registerUser(User user) {
@@ -37,7 +42,9 @@ public class UserService {
     	}
     }
     
-
+    public List<User> findAll(){
+    	return this.findAll();
+    }
     
  // authenticate user
     public boolean authenticateUser(String email, String password) {
@@ -55,4 +62,19 @@ public class UserService {
             }
         }
     }
+    
+	public void checkPayment() {
+		
+		List <User> allUser= (List<User>) uRepo.findAll();
+		
+		for (User oneUser :allUser){
+			System.out.println(oneUser);
+			for(Bill bill: oneUser.getBills()) {
+				if(bill.isPayed()==false) {
+					eServ.sendSimpleMail(oneUser.getEmail(), "Please Take care of this Bill "+bill.getName(), "Bill Reminder ");
+				}
+				eServ.sendSimpleMail(oneUser.getEmail(), "Thank you for paying this Bill "+bill.getName(), "Bill Reminder ");
+			}
+		}
+	}
 }

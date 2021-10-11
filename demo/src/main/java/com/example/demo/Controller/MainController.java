@@ -1,12 +1,13 @@
 package com.example.demo.Controller;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -109,7 +110,7 @@ public class MainController {
 		}
 		Long userId=(Long) session.getAttribute("userId");
 		User userLoggedIn=this.uServ.findUserById(userId);
-		System.out.println(bill.isPayed());
+//		System.out.println(bill.isPayed());
 		System.out.println(bill.getDate());
 		if(result.hasErrors()) {
 			return "bill.jsp";
@@ -117,7 +118,7 @@ public class MainController {
 		//set a user to a bill
 		bill.setUser(userLoggedIn);
 		Bill thisBill=bServ.createBill(bill);
-		System.out.println(bill.getPayDate());
+//		System.out.println(bill.getPayDate());
 		// send an email to the user
 		String userEmail=userLoggedIn.getEmail();
 		String billName=thisBill.getName();
@@ -190,4 +191,5 @@ public class MainController {
 	}
 	
 	
+
 }
