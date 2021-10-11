@@ -8,6 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- for rendering errors on PUT routes -->
 <%@ page isErrorPage="true"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +64,7 @@
   	  <tr>
       <th scope="row"> <a href="/edit/${bill.id}">${bill.name}</a> </th>
       <td>${bill.amount}</td>
-      <td>${bill.payDate}</td>
+      <td> <fmt:formatDate  pattern = "yyyy-MM-dd" value = "${bill.payDate}" /> </td>
       <td>
       <c:if test="${bill.payed==false}">
       	<a href="/pay/${bill.id}">Pay</a> |

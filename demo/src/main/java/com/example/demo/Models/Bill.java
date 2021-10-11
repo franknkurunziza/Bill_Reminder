@@ -15,6 +15,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,7 +32,7 @@ public class Bill {
     @Size(min=2,message="Bill Name Must be at least 2 Character")
     private String name;
     
-    @NotNull
+    @Min(value=1,message="Amount have to greater to one")
     private int amount;
     
 //    private LocalDate payDate=LocalDate.now();

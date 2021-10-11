@@ -21,12 +21,13 @@
 	<div class="container">
 	
 		<div class="content">
-		<h1>WellCome<c:out value="${user.firstname }"/></h1>
+		<h1>WellCome <c:out value="${user.firstname }"/></h1>
+		
 		<c:forEach items="${user.bills}" var="bill">
 		<c:if test="${bill.payed==false}">
 			<p>Bill Name: ${bill.name}</p>
 			<p>Bill Name: ${bill.amount}</p>
-			<p>Bill Name: ${bill.payDate}</p>
+			<p>Bill Name: <fmt:formatDate  pattern = "yyyy-MM-dd" value = "${bill.payDate}" /></p>
 			<p>-------------------------------</p>
 		
 		</c:if>

@@ -39,7 +39,7 @@
 				</div>
 				<div class="form-group">
 					<form:label path="payDate">Date Due</form:label>
-					<form:input type="date" value="${bill.date}" path="payDate" class="form-control" />
+					<form:input type="date"  path="payDate" class="form-control" />
 					
 				</div>
 				

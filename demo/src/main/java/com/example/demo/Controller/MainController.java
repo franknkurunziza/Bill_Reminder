@@ -166,10 +166,13 @@ public class MainController {
 	}
 	
 	@RequestMapping("/update/{id}")
-	public String updateBill(@ModelAttribute("bill")Bill bill,@PathVariable("id") Long Id,RedirectAttributes redirectAttributes, HttpSession session)  {
+	public String updateBill(@Valid @ModelAttribute("bill")Bill bill,@PathVariable("id") Long Id,BindingResult result,RedirectAttributes redirectAttributes, HttpSession session)  {
 		if (session.getAttribute("userId") == null) {            
 			redirectAttributes.addFlashAttribute("error", "Must be logged in");  
 		return "redirect:/login";     
+		}
+		if(result.hasErrors()) {
+			return "edit.jsp";
 		}
 		Long userId=(Long) session.getAttribute("userId");
 		User loggedIn=this.uServ.findUserById(userId);
